@@ -1,0 +1,279 @@
+Run 1 of 3
+Started:  2026-11-23T16:38:19.668Z
+Finished: 2026-11-23T16:52:15.034Z
+Command:  npx cypress run --e2e
+Exit code: 8 (number of failed tests)
+
+
+====================================================================================================
+
+  (Run Starting)
+
+  ┌────────────────────────────────────────────────────────────────────────────────────────────────┐
+  │ Cypress:        13.17.0                                                                        │
+  │ Browser:        Electron 118 (headless)                                                        │
+  │ Node Version:   v24.19.0 (C:\Program Files\nodejs\node.exe)                                    │
+  │ Specs:          3 found (01-seeded-results.cy.ts, 02-recalculation.cy.ts, 03-bet-balance.cy.ts │
+  │                 )                                                                              │
+  │ Searched:       cypress/e2e/**/*.cy.ts                                                         │
+  └────────────────────────────────────────────────────────────────────────────────────────────────┘
+
+
+────────────────────────────────────────────────────────────────────────────────────────────────────
+                                                                                                    
+  Running:  01-seeded-results.cy.ts                                                         (1 of 3)
+
+
+  Seeded results: rolls, win/loss and balance
+    Seed A (rolls 98.29, 98.51, 12.59, 4.90)
+      √ Roll Over 98.00 (preset): win, win, loss, loss; balance 3000 -> 4425.12 (35697ms)
+      √ Roll Under 50.00: same rolls, opposite outcomes - rolls do not depend on the target (25676ms)
+      √ a new visit is a new player: balance resets and rolls restart from the first (33287ms)
+    Seed B (first roll 50.00 - the boundary)
+      1) Roll Over 50.00 (preset): 50.00 is not greater than 50.00, so the bet loses [BUG-001]
+      2) Roll Under 50.00: 50.00 is not less than 50.00, so the bet loses [BUG-001]
+      3) Roll Over 40.00: 50.00 wins and pays 15 x 1.6501 [BUG-001]
+
+
+  3 passing (3m)
+  3 failing
+
+  1) Seeded results: rolls, win/loss and balance
+       Seed B (first roll 50.00 - the boundary)
+         Roll Over 50.00 (preset): 50.00 is not greater than 50.00, so the bet loses [BUG-001]:
+     AssertionError: Timed out retrying after 15000ms: round recorded in Previous Results (game must not freeze): expected 'undefined' to have a length of 1 but got 0
+      at Context.eval (webpack://qa-dice-cypress/./cypress/e2e/01-seeded-results.cy.ts:102:0)
+
+  2) Seeded results: rolls, win/loss and balance
+       Seed B (first roll 50.00 - the boundary)
+         Roll Under 50.00: 50.00 is not less than 50.00, so the bet loses [BUG-001]:
+     AssertionError: Timed out retrying after 15000ms: round recorded in Previous Results (game must not freeze): expected 'undefined' to have a length of 1 but got 0
+      at Context.eval (webpack://qa-dice-cypress/./cypress/e2e/01-seeded-results.cy.ts:102:0)
+
+  3) Seeded results: rolls, win/loss and balance
+       Seed B (first roll 50.00 - the boundary)
+         Roll Over 40.00: 50.00 wins and pays 15 x 1.6501 [BUG-001]:
+
+      AssertionError: Timed out retrying after 15000ms: balance: expected '2,985.0000' to equal '3,009.7515'
+      + expected - actual
+
+      -'2,985.0000'
+      +'3,009.7515'
+      
+      at Context.eval (webpack://qa-dice-cypress/./cypress/e2e/01-seeded-results.cy.ts:20:0)
+
+
+
+
+  (Results)
+
+  ┌────────────────────────────────────────────────────────────────────────────────────────────────┐
+  │ Tests:        6                                                                                │
+  │ Passing:      3                                                                                │
+  │ Failing:      3                                                                                │
+  │ Pending:      0                                                                                │
+  │ Skipped:      0                                                                                │
+  │ Screenshots:  3                                                                                │
+  │ Video:        false                                                                            │
+  │ Duration:     3 minutes, 17 seconds                                                            │
+  │ Spec Ran:     01-seeded-results.cy.ts                                                          │
+  └────────────────────────────────────────────────────────────────────────────────────────────────┘
+
+
+  (Screenshots)
+
+  -  C:\Users\lwt_1\OneDrive\桌面\qa-dice-cypress\cypress\screenshots\01-seeded-resu…     (1280x720)
+     .cy.ts\Seeded results rolls, winloss and balance -- Seed B (first roll 50.00 - t               
+     he boundary) -- Roll Over 50.00 (preset) 50.00 is not greater than 50.00, so the               
+      bet loses [BUG-001] (failed).png                                                              
+  -  C:\Users\lwt_1\OneDrive\桌面\qa-dice-cypress\cypress\screenshots\01-seeded-resu…     (1280x720)
+     .cy.ts\Seeded results rolls, winloss and balance -- Seed B (first roll 50.00 - t               
+     he boundary) -- Roll Under 50.00 50.00 is not less than 50.00, so the bet loses                
+     [BUG-001] (failed).png                                                                         
+  -  C:\Users\lwt_1\OneDrive\桌面\qa-dice-cypress\cypress\screenshots\01-seeded-resu…     (1280x720)
+     .cy.ts\Seeded results rolls, winloss and balance -- Seed B (first roll 50.00 - t               
+     he boundary) -- Roll Over 40.00 50.00 wins and pays 15 x 1.6501 [BUG-001] (faile               
+     d).png                                                                                         
+
+
+────────────────────────────────────────────────────────────────────────────────────────────────────
+                                                                                                    
+  Running:  02-recalculation.cy.ts                                                          (2 of 3)
+
+
+  Win chance and multiplier recalculate
+    √ defaults to Roll Over 50.50 with consistent odds (16616ms)
+    √ Roll Over: typing the target up and down recalculates multiplier and win chance (66266ms)
+    √ Roll Under: typing the target down and up recalculates multiplier and win chance (45924ms)
+    √ the target -/+ buttons step by 1.00 in both directions and recalculate (36037ms)
+    √ switching Over <-> Under keeps the target and flips the odds (20378ms)
+    √ editing the win chance back-solves the target and multiplier (18160ms)
+    √ editing the multiplier back-solves the target and win chance (13417ms)
+    √ clamps the target to the allowed range for each direction (24172ms)
+    known defects (see BUGS.md)
+      1) keeps a typed target exactly as entered, e.g. Over 16.49 and Under 1.16 [BUG-003]
+      2) cuts the multiplier from the exact value: Under 4.38 is exactly x22.605 [BUG-004]
+      3) shows the exact win chance rounded to 2 dp: Over 2.00 is 9,800/10,001 = 97.99% [BUG-005]
+
+
+  8 passing (6m)
+  3 failing
+
+  1) Win chance and multiplier recalculate
+       known defects (see BUGS.md)
+         keeps a typed target exactly as entered, e.g. Over 16.49 and Under 1.16 [BUG-003]:
+
+      AssertionError: Timed out retrying after 15000ms: multiplier @ over 16.49: expected '1.1854' to equal '1.1856'
+      + expected - actual
+
+      -'1.1854'
+      +'1.1856'
+      
+      at Context.eval (webpack://qa-dice-cypress/./cypress/e2e/02-recalculation.cy.ts:24:96)
+
+  2) Win chance and multiplier recalculate
+       known defects (see BUGS.md)
+         cuts the multiplier from the exact value: Under 4.38 is exactly x22.605 [BUG-004]:
+
+      AssertionError: Timed out retrying after 15000ms: multiplier @ under 4.38: expected '22.604' to equal '22.605'
+      + expected - actual
+
+      -'22.604'
+      +'22.605'
+      
+      at Context.eval (webpack://qa-dice-cypress/./cypress/e2e/02-recalculation.cy.ts:24:96)
+
+  3) Win chance and multiplier recalculate
+       known defects (see BUGS.md)
+         shows the exact win chance rounded to 2 dp: Over 2.00 is 9,800/10,001 = 97.99% [BUG-005]:
+
+      Timed out retrying after 15000ms
+      + expected - actual
+
+      -'98.00'
+      +'97.99'
+      
+      at Context.eval (webpack://qa-dice-cypress/./cypress/e2e/02-recalculation.cy.ts:129:0)
+
+
+
+
+  (Results)
+
+  ┌────────────────────────────────────────────────────────────────────────────────────────────────┐
+  │ Tests:        11                                                                               │
+  │ Passing:      8                                                                                │
+  │ Failing:      3                                                                                │
+  │ Pending:      0                                                                                │
+  │ Skipped:      0                                                                                │
+  │ Screenshots:  3                                                                                │
+  │ Video:        false                                                                            │
+  │ Duration:     5 minutes, 44 seconds                                                            │
+  │ Spec Ran:     02-recalculation.cy.ts                                                           │
+  └────────────────────────────────────────────────────────────────────────────────────────────────┘
+
+
+  (Screenshots)
+
+  -  C:\Users\lwt_1\OneDrive\桌面\qa-dice-cypress\cypress\screenshots\02-recalculati…     (1280x720)
+     cy.ts\Win chance and multiplier recalculate -- known defects (see BUGS.md) -- ke               
+     eps a typed target exactly as entered, e.g. Over 16.49 and Under 1.16 [BUG-003]                
+     (failed).png                                                                                   
+  -  C:\Users\lwt_1\OneDrive\桌面\qa-dice-cypress\cypress\screenshots\02-recalculati…     (1280x720)
+     cy.ts\Win chance and multiplier recalculate -- known defects (see BUGS.md) -- cu               
+     ts the multiplier from the exact value Under 4.38 is exactly x22.605 [BUG-004] (               
+     failed).png                                                                                    
+  -  C:\Users\lwt_1\OneDrive\桌面\qa-dice-cypress\cypress\screenshots\02-recalculati…     (1280x720)
+     cy.ts\Win chance and multiplier recalculate -- known defects (see BUGS.md) -- sh               
+     ows the exact win chance rounded to 2 dp Over 2.00 is 9,80010,001 = 97.99% [BUG-               
+     005] (failed).png                                                                              
+
+
+────────────────────────────────────────────────────────────────────────────────────────────────────
+                                                                                                    
+  Running:  03-bet-balance.cy.ts                                                            (3 of 3)
+
+
+  Bet amount and balance integrity
+    bet amount controls
+      √ 1/2 halves, 2x doubles and the chip buttons add to the bet (22828ms)
+      √ caps the bet at the balance when typed or doubled past it (13822ms)
+      √ raises zero, negative and sub-minimum bets to the 0.01 minimum (11686ms)
+      √ accepts a bet with up to 4 decimals exactly as typed (9221ms)
+      1) does not silently replace a 5-decimal bet with the 0.01 minimum [BUG-006]
+    settlement
+      √ debits and credits small decimal bets exactly to 4 dp (23205ms)
+      √ a fast double-click on Bet (two clicks 50 ms apart) places exactly one bet (13952ms)
+      √ blocks a bet larger than the balance, then allows it once the bet fits (12890ms)
+      √ goes to exactly zero on an all-in loss and then refuses further bets (12602ms)
+    displayed profit
+      2) "Profits on Win" shows profit (payout - bet), not the payout [BUG-002]
+
+
+  8 passing (3m)
+  2 failing
+
+  1) Bet amount and balance integrity
+       bet amount controls
+         does not silently replace a 5-decimal bet with the 0.01 minimum [BUG-006]:
+     AssertionError: Timed out retrying after 15000ms: bet after typing 1.23456: expected '0.0100' to match /^1\.234[56]$/
+      at Context.eval (webpack://qa-dice-cypress/./cypress/e2e/03-bet-balance.cy.ts:81:0)
+
+  2) Bet amount and balance integrity
+       displayed profit
+         "Profits on Win" shows profit (payout - bet), not the payout [BUG-002]:
+
+      AssertionError: expected '742.5600' to equal '727.5600'
+      + expected - actual
+
+      -'742.5600'
+      +'727.5600'
+      
+      at Context.eval (webpack://qa-dice-cypress/./cypress/e2e/03-bet-balance.cy.ts:164:0)
+
+
+
+
+  (Results)
+
+  ┌────────────────────────────────────────────────────────────────────────────────────────────────┐
+  │ Tests:        10                                                                               │
+  │ Passing:      8                                                                                │
+  │ Failing:      2                                                                                │
+  │ Pending:      0                                                                                │
+  │ Skipped:      0                                                                                │
+  │ Screenshots:  2                                                                                │
+  │ Video:        false                                                                            │
+  │ Duration:     2 minutes, 37 seconds                                                            │
+  │ Spec Ran:     03-bet-balance.cy.ts                                                             │
+  └────────────────────────────────────────────────────────────────────────────────────────────────┘
+
+
+  (Screenshots)
+
+  -  C:\Users\lwt_1\OneDrive\桌面\qa-dice-cypress\cypress\screenshots\03-bet-balance…     (1280x720)
+     .ts\Bet amount and balance integrity -- bet amount controls -- does not silently               
+      replace a 5-decimal bet with the 0.01 minimum [BUG-006] (failed).png                          
+  -  C:\Users\lwt_1\OneDrive\桌面\qa-dice-cypress\cypress\screenshots\03-bet-balance…     (1280x720)
+     .ts\Bet amount and balance integrity -- displayed profit -- Profits on Win shows               
+      profit (payout - bet), not the payout [BUG-002] (failed).png                                  
+
+
+====================================================================================================
+
+  (Run Finished)
+
+
+       Spec                                              Tests  Passing  Failing  Pending  Skipped  
+  ┌────────────────────────────────────────────────────────────────────────────────────────────────┐
+  │ ×  01-seeded-results.cy.ts                  03:17        6        3        3        -        - │
+  ├────────────────────────────────────────────────────────────────────────────────────────────────┤
+  │ ×  02-recalculation.cy.ts                   05:44       11        8        3        -        - │
+  ├────────────────────────────────────────────────────────────────────────────────────────────────┤
+  │ ×  03-bet-balance.cy.ts                     02:37       10        8        2        -        - │
+  └────────────────────────────────────────────────────────────────────────────────────────────────┘
+    ×  3 of 3 failed (100%)                     11:39       27       19        8        -        -  
+
+
+DevTools listening on ws://127.0.0.1:56057/devtools/browser/8deacd3d-b5ce-4f30-b66b-680c098ea493
+Missing baseUrl in compilerOptions. tsconfig-paths will be skipped

@@ -1,0 +1,22 @@
+{
+  "name": "qa-dice-cypress",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Cypress E2E suite for the Joy Dice QA assessment",
+  "scripts": {
+    "cy:open": "cypress open --e2e",
+    "test": "cypress run --e2e",
+    "test:chrome": "cypress run --e2e --browser chrome",
+    "test:3x": "node scripts/run-3x.js",
+    "screenshots:bugs": "cypress run --e2e --config specPattern=cypress/evidence/**/*.cy.ts --spec cypress/evidence/bug-evidence.cy.ts",
+    "typecheck": "tsc --noEmit -p ."
+  },
+  "license": "ISC",
+  "devDependencies": {
+    "cypress": "^13.17.0",
+    "mochawesome": "^7.1.4",
+    "mochawesome-merge": "^4.4.1",
+    "mochawesome-report-generator": "^6.3.2",
+    "typescript": "^5.9.3"
+  }
+}

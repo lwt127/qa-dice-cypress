@@ -1,0 +1,18 @@
+{
+  "startingBalance": "3000.0000",
+  "defaultBet": "15.0000",
+  "seeds": {
+    "A": {
+      "label": "Seed A",
+      "value": "seed-a-streak",
+      "presetTarget": "98.00",
+      "rolls": ["98.29", "98.51", "12.59", "4.90"]
+    },
+    "B": {
+      "label": "Seed B",
+      "value": "seed-b-boundary",
+      "presetTarget": "50.00",
+      "rolls": ["50.00"]
+    }
+  }
+}

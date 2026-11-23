@@ -1,0 +1,8 @@
+node_modules/
+cypress/screenshots/
+cypress/videos/
+cypress/downloads/
+cypress/results/
+runs/.json-run-*/
+# stray reporter output from an earlier run, not part of the recorded evidence (that's runs/)
+/reports/
